@@ -18,15 +18,25 @@ python -m http.server 8001
 
 That's it. No tooling.
 
-## Deploy (Phase 4.2)
+## Deploy
 
-Once `jesse-prod` has nginx + the wildcard cert (Phase 1.3 / 0.4):
+`git push origin main` → GitHub Actions → SSH → `scripts/deploy.sh` on `jesse-prod`. Live: https://jesselab.space/.
 
-```bash
-rsync -av --delete --exclude .git ./ deploy@jesse-prod:/srv/web/home/
-```
+Layout on the box:
 
-Served at `https://jesse.<tld>/` via the nginx server block from Phase 4.4.
+- `/srv/web/home/repo/` — full git tree (rsync target)
+- `/srv/web/home/site/` — what nginx serves (only public assets — html/css/js/svg/png/jpg/ico/webmanifest)
+- `nginx/jesselab.space.conf` → `/etc/nginx/sites-available/jesselab.space` (apex-only block)
+
+The wildcard `*.jesselab.space` catch-all is owned separately (Phase 1.3) — this block matches the apex via more-specific `server_name jesselab.space` so it wins for the apex.
+
+## GH Actions secrets
+
+| Name | Value |
+|---|---|
+| `SSH_PRIVATE_KEY` | private half of the deploy key (separate from personal_api's) |
+| `SSH_HOST` | `84.235.161.26` |
+| `SSH_USER` | `deploy` |
 
 ## Apex swap
 
