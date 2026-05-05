@@ -12,16 +12,10 @@ cd "$REPO"
 # 1. Sync public assets to the served directory. Anything not listed here
 #    (README, scripts, nginx, .git*) stays out of the webroot.
 rsync -a --delete \
-    --include='*.html' \
-    --include='*.css' \
-    --include='*.js' \
-    --include='*.svg' \
-    --include='*.png' \
-    --include='*.jpg' \
-    --include='*.ico' \
-    --include='*.webmanifest' \
-    --include='*/' \
-    --exclude='*' \
+    --exclude='.git*' \
+    --exclude='/scripts' \
+    --exclude='/nginx' \
+    --exclude='/README.md' \
     "$REPO"/ "$SITE"/
 
 # 2. Sync nginx site if it changed.
