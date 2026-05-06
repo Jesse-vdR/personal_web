@@ -7,7 +7,7 @@ Sibling apps it points at:
 - `Jesse-vdR/Training-app` — calisthenics + running PWA
 - `Jesse-vdR/journal_app` — text + voice journal PWA
 
-Tracks issue [Jesse-vdR/Jesse#9](https://github.com/Jesse-vdR/Jesse/issues/9) (Phase 4). Sign-in surfaces (Sign in with Google → `api.jesselab.space/v1/auth/google/login`, signed-in name/email, sign-out) and the `/projects` stub were added in [Jesse#25](https://github.com/Jesse-vdR/Jesse/issues/25).
+Tracks issue [Jesse-vdR/Jesse#9](https://github.com/Jesse-vdR/Jesse/issues/9) (Phase 4). Sign-in surfaces (Sign in with Google → `api.jesselab.space/v1/auth/google/login`, signed-in name/email, sign-out) and the `/projects` stub were added in [Jesse#25](https://github.com/Jesse-vdR/Jesse/issues/25). The `/profile` page (identity + sign-out + disabled BYOK placeholders) was added in [Jesse#35](https://github.com/Jesse-vdR/Jesse/issues/35).
 
 ## Local dev
 
