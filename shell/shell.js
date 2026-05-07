@@ -21,6 +21,7 @@ export const HEAT = [
  */
 export function heatColor(done, total) {
   if (!Number.isFinite(total) || total <= 0) return HEAT[0];
+  if (!Number.isFinite(done)) return HEAT[0];
   const next = Math.max(0, Math.min(done, total - 1));
   const denom = Math.max(total - 1, 1);
   const idx = Math.round(next * (HEAT.length - 1) / denom);

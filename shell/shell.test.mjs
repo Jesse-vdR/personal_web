@@ -36,5 +36,7 @@ assert.notEqual(mid, HEAT[11], "4/8 must not be the last color");
 assert.equal(heatColor(0, 0), HEAT[0], "total=0 → HEAT[0]");
 // Negative done clamps to first color.
 assert.equal(heatColor(-3, 12), HEAT[0], "negative done → HEAT[0]");
+// NaN done falls back to first color (silent-failure prevention).
+assert.equal(heatColor(NaN, 12), HEAT[0], "NaN done → HEAT[0]");
 
 console.log("OK: all shell.js helper tests passed");
