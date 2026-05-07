@@ -54,6 +54,8 @@ export const Shell = {
     const target = document.querySelector(mountSelector);
     const html = topbarHTML(mode, homeUrl);
     if (target) {
+      // outerHTML replaces the element in-place; `target` is detached after this.
+      // wireAuth re-queries #shell-topbar-user by ID, not via `target`.
       target.outerHTML = html;
     } else {
       const wrap = document.createElement("div");
@@ -61,7 +63,7 @@ export const Shell = {
       document.body.insertBefore(wrap.firstElementChild, document.body.firstChild);
     }
 
-    wireAuth(apiBase, mode, homeUrl);
+    wireAuth(apiBase, homeUrl);
   },
 };
 
@@ -87,7 +89,7 @@ function topbarHTML(mode, homeUrl) {
 </header>`.trim();
 }
 
-async function wireAuth(apiBase, mode, homeUrl) {
+async function wireAuth(apiBase, homeUrl) {
   const userEl = document.getElementById("shell-topbar-user");
   if (!userEl) return;
   let me = null;
@@ -105,7 +107,7 @@ async function wireAuth(apiBase, mode, homeUrl) {
 function renderSignIn(userEl, apiBase) {
   const next = encodeURIComponent(location.origin + location.pathname);
   userEl.innerHTML = `
-    <a class="shell-btn-link" href="${escapeAttr(apiBase)}/v1/auth/google/login?next=${next}">SIGN IN</a>
+    <a class="shell-btn-link" href="${escapeAttr(apiBase)}/v1/auth/google/login?next=${escapeAttr(next)}">SIGN IN</a>
   `.trim();
 }
 
