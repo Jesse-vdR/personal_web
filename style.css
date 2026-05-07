@@ -252,3 +252,23 @@ footer {
   letter-spacing: 0.05em;
 }
 footer a { color: var(--muted); }
+
+/* ===== DESKTOP (>=900px) ===== */
+@media (min-width: 900px) {
+  body { max-width: 880px; }
+
+  /* Apps section becomes a 2-column card grid; the section heading
+     spans both columns so it still reads as the section label. */
+  .apps {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.65rem;
+    align-items: stretch;
+  }
+  .apps .section-h { grid-column: 1 / -1; }
+  .apps .card { margin-bottom: 0; }
+
+  /* Bigger header so it doesn't look pinched in a wider column */
+  header { padding: 2.5rem 0 3rem; }
+  header h1 { font-size: clamp(2rem, 4.2vw, 2.6rem); }
+}
