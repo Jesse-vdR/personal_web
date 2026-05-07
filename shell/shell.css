@@ -116,5 +116,175 @@ a { color: var(--accent-cool); text-decoration: none; }
 a:hover { text-decoration: underline; }
 
 /* ============================================================
- * Continued in Task 3 (components) and Task 4 (chrome).
+ * 2. COMPONENTS
+ * ============================================================ */
+
+/* Eyebrow — Geist Mono caps with letter-spacing */
+.shell-eyebrow {
+  font: 500 9.5px/1 var(--font-mono);
+  color: var(--muted);
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+}
+
+/* Headings */
+.shell-h1 {
+  font: 500 22px/1.1 var(--font-sans);
+  color: var(--fg);
+  letter-spacing: -0.02em;
+}
+.shell-h2 {
+  font: 500 17px/1.15 var(--font-sans);
+  color: var(--fg);
+  letter-spacing: -0.02em;
+}
+
+/* Display number — light weight, monospaced numerals */
+.shell-display-num {
+  font: 200 32px/1 var(--font-sans);
+  color: var(--fg);
+  letter-spacing: -0.04em;
+  font-feature-settings: "tnum";
+}
+
+/* Meta text — small mono labels */
+.shell-meta {
+  font: 400 10.5px/1 var(--font-mono);
+  color: var(--dim);
+  letter-spacing: 0.04em;
+}
+
+/* Card — default surface */
+.shell-card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--r-xl);
+  padding: var(--space-4) var(--space-4) var(--space-5);
+}
+
+/* Tile — apex/portal card with hover-lift + sky border */
+.shell-tile {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--r-xl);
+  padding: var(--space-3) var(--space-4);
+  cursor: pointer;
+  transition: transform var(--m-fast),
+              border-color var(--m-base),
+              box-shadow var(--m-base);
+}
+.shell-tile:hover,
+.shell-tile.is-hover {
+  transform: translateY(-2px);
+  border-color: rgba(96, 165, 250, 0.55);
+  box-shadow: 0 0 0 1px rgba(96, 165, 250, 0.25),
+              0 8px 24px rgba(0, 0, 0, 0.35);
+}
+.shell-tile:active { transform: translateY(-1px) scale(0.995); }
+
+/* Buttons */
+.shell-btn-primary {
+  display: inline-flex; align-items: center; justify-content: center;
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--r-md);
+  border: 0;
+  font: 600 12px/1 var(--font-mono);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--warm-foot);
+  background: var(--btn-color, var(--accent-cool));
+  box-shadow: 0 0 12px var(--btn-glow, rgba(96, 165, 250, 0.4));
+  cursor: pointer;
+  transition: background var(--m-slow), box-shadow var(--m-slow), transform var(--m-fast);
+}
+.shell-btn-primary:active { transform: scale(0.97); }
+.shell-btn-primary:disabled { opacity: 0.5; cursor: not-allowed; }
+
+.shell-btn-secondary {
+  display: inline-flex; align-items: center; justify-content: center;
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--r-md);
+  border: 1px solid var(--line);
+  background: transparent;
+  font: 500 11px/1 var(--font-mono);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+  cursor: pointer;
+  transition: border-color var(--m-base), color var(--m-base);
+}
+.shell-btn-secondary:hover { border-color: rgba(96, 165, 250, 0.55); color: var(--fg); }
+
+.shell-btn-link {
+  background: none;
+  border: 0;
+  padding: 0;
+  color: var(--muted);
+  font: 500 10px/1 var(--font-mono);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  cursor: pointer;
+  text-decoration: none;
+}
+.shell-btn-link:hover { color: var(--fg); text-decoration: underline; }
+
+/* Segmented gradient bar (training) */
+.shell-bar-seg {
+  display: flex;
+  gap: 3px;
+}
+.shell-bar-seg__cell {
+  flex: 1;
+  height: 11px;
+  border-radius: var(--r-sm);
+  background: rgba(255, 255, 255, 0.04);
+  transition: background var(--m-slow), box-shadow var(--m-slow);
+}
+.shell-bar-seg__cell.is-on {
+  box-shadow: 0 0 5px rgba(232, 89, 114, 0.3);
+}
+.shell-bar-seg__cell:nth-child(1).is-on  { background: var(--heat-1);  }
+.shell-bar-seg__cell:nth-child(2).is-on  { background: var(--heat-2);  }
+.shell-bar-seg__cell:nth-child(3).is-on  { background: var(--heat-3);  }
+.shell-bar-seg__cell:nth-child(4).is-on  { background: var(--heat-4);  }
+.shell-bar-seg__cell:nth-child(5).is-on  { background: var(--heat-5);  }
+.shell-bar-seg__cell:nth-child(6).is-on  { background: var(--heat-6);  }
+.shell-bar-seg__cell:nth-child(7).is-on  { background: var(--heat-7);  }
+.shell-bar-seg__cell:nth-child(8).is-on  { background: var(--heat-8);  }
+.shell-bar-seg__cell:nth-child(9).is-on  { background: var(--heat-9);  }
+.shell-bar-seg__cell:nth-child(10).is-on { background: var(--heat-10); }
+.shell-bar-seg__cell:nth-child(11).is-on { background: var(--heat-11); }
+.shell-bar-seg__cell:nth-child(12).is-on { background: var(--heat-12); }
+
+/* Pulse bars (journal recording) — vertical, animated */
+.shell-pulse-bars {
+  display: flex; align-items: center; gap: 5px;
+  height: 80px;
+}
+.shell-pulse-bars__bar {
+  width: 5px;
+  border-radius: 3px;
+  background: linear-gradient(to top, var(--heat-1), var(--heat-3));
+  box-shadow: 0 0 8px rgba(96, 165, 250, 0.5);
+  animation: shell-pulse-h 0.8s ease-in-out infinite;
+}
+@keyframes shell-pulse-h {
+  0%, 100% { transform: scaleY(0.6); opacity: 0.7; }
+  50%      { transform: scaleY(1);   opacity: 1; }
+}
+
+/* Feed item (inspiration) — entry with left rule, not a card */
+.shell-feed-item {
+  padding: var(--space-3) var(--space-4) var(--space-3) var(--space-5);
+  border-left: 2px solid var(--line);
+  transition: border-color var(--m-base);
+  cursor: pointer;
+}
+.shell-feed-item:hover,
+.shell-feed-item.is-hover {
+  border-left-color: var(--accent-cool);
+}
+
+/* ============================================================
+ * Continued in Task 4 (chrome).
  * ============================================================ */
