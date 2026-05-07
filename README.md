@@ -43,3 +43,18 @@ The wildcard `*.jesselab.space` catch-all is owned separately (Phase 1.3) — th
 `app.js` calls `https://api.jesselab.space/v1/me` with `credentials: 'include'`. The session cookie is shared via the `.jesselab.space` cookie domain so signing in on the API drops a cookie this site reads. Sign-in button links to `/v1/auth/google/login?next=https://jesselab.space/`. Locally: API at `:8000`, this at `:8001`; `app.js` switches API base on `localhost` hostname.
 
 For the redirect to work in prod the API needs `https://jesselab.space` in `ALLOWED_REDIRECT_ORIGINS` and `DEFAULT_POST_LOGIN_URL=https://jesselab.space/` (one-time `/etc/jesse/api.env` edit on `jesse-prod`, separate from this repo).
+
+## Shell — shared design system
+
+`shell/` holds `shell.css`, `shell.js`, and self-hosted Geist fonts. The
+shell is consumed by every web surface under `Jesse-vdR/` (apex itself,
+training, journal, inspiration). Each subdomain serves it from its own
+origin via an nginx `alias` to this repo's deployed `shell/` directory.
+
+- Spec + tokens: `Jesse-vdR/Jesse:docs/design-system.md`.
+- Visual style guide: open `https://jesselab.space/shell/shell-test.html`
+  after deploy to see every component in context.
+- Helper tests: `node shell/shell.test.mjs` from this repo's root.
+
+Apex itself does NOT yet consume the shell — that migration is its own
+follow-up. The shell ships first; apps adopt it one by one.

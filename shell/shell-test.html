@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Shell · style guide</title>
+<link rel="stylesheet" href="./shell.css">
+<style>
+  /* Page-local helpers. Not part of the shell. */
+  .sg-section { margin-top: 32px; }
+  .sg-label { display: block; margin-bottom: 8px; }
+  .sg-row { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; }
+  .sg-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  @media (max-width: 720px) { .sg-grid-2 { grid-template-columns: 1fr; } }
+  .sg-swatches { display: flex; gap: 4px; flex-wrap: wrap; }
+  .sg-sw { width: 32px; height: 32px; border-radius: 6px; border: 1px solid var(--line); }
+  .sg-fail { color: var(--danger); font-family: var(--font-mono); }
+</style>
+</head>
+<body class="shell-page shell-page--medium">
+
+<!-- mount target — Shell.mount() will replace this -->
+<div id="jesse-topbar"></div>
+
+<header class="shell-page-header">
+  <p class="shell-page-header__eyebrow">Style guide · v1</p>
+  <h1 class="shell-page-header__title">Shell components</h1>
+</header>
+
+<main class="shell-page-content">
+
+  <!-- Tokens -->
+  <section class="sg-section">
+    <p class="shell-eyebrow sg-label">Heat palette · 12 stops</p>
+    <div class="sg-swatches">
+      <span class="sg-sw" style="background: var(--heat-1)"></span>
+      <span class="sg-sw" style="background: var(--heat-2)"></span>
+      <span class="sg-sw" style="background: var(--heat-3)"></span>
+      <span class="sg-sw" style="background: var(--heat-4)"></span>
+      <span class="sg-sw" style="background: var(--heat-5)"></span>
+      <span class="sg-sw" style="background: var(--heat-6)"></span>
+      <span class="sg-sw" style="background: var(--heat-7)"></span>
+      <span class="sg-sw" style="background: var(--heat-8)"></span>
+      <span class="sg-sw" style="background: var(--heat-9)"></span>
+      <span class="sg-sw" style="background: var(--heat-10)"></span>
+      <span class="sg-sw" style="background: var(--heat-11)"></span>
+      <span class="sg-sw" style="background: var(--heat-12)"></span>
+    </div>
+  </section>
+
+  <!-- Card + display number + segmented bar + dynamic button -->
+  <section class="sg-section">
+    <p class="shell-eyebrow sg-label">Card · display num · bar-seg · dynamic button</p>
+    <div class="shell-card">
+      <p class="shell-eyebrow">Pull-ups</p>
+      <h2 class="shell-h2" style="margin-top: 8px">3 × 12</h2>
+      <p class="shell-meta" style="margin: 4px 0 16px">Compound · upper body</p>
+      <div style="display: flex; align-items: baseline; gap: 8px; margin-bottom: 14px">
+        <span class="shell-display-num">8</span>
+        <span class="shell-meta">/ 12</span>
+      </div>
+      <div class="shell-bar-seg" id="sg-bar">
+        <div class="shell-bar-seg__cell is-on"></div>
+        <div class="shell-bar-seg__cell is-on"></div>
+        <div class="shell-bar-seg__cell is-on"></div>
+        <div class="shell-bar-seg__cell is-on"></div>
+        <div class="shell-bar-seg__cell is-on"></div>
+        <div class="shell-bar-seg__cell is-on"></div>
+        <div class="shell-bar-seg__cell is-on"></div>
+        <div class="shell-bar-seg__cell is-on"></div>
+        <div class="shell-bar-seg__cell"></div>
+        <div class="shell-bar-seg__cell"></div>
+        <div class="shell-bar-seg__cell"></div>
+        <div class="shell-bar-seg__cell"></div>
+      </div>
+      <div class="sg-row" style="margin-top: 16px">
+        <button class="shell-btn-primary" id="sg-tap">Tap</button>
+        <button class="shell-btn-secondary">Skip</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Tile (apex) -->
+  <section class="sg-section">
+    <p class="shell-eyebrow sg-label">Tile · hover state</p>
+    <div class="sg-grid-2">
+      <a class="shell-tile" href="#">
+        <div style="display: flex; justify-content: space-between; align-items: baseline">
+          <span class="shell-h2" style="font-size: 14px">training</span>
+          <span class="shell-meta" style="text-transform: uppercase; letter-spacing: 0.14em">live</span>
+        </div>
+        <p class="shell-meta" style="margin-top: 4px; font-family: var(--font-sans); font-size: 11px; color: var(--muted)">
+          Calisthenics + running.
+        </p>
+        <p class="shell-meta" style="margin-top: 7px">training.jesselab.space</p>
+      </a>
+      <a class="shell-tile is-hover" href="#">
+        <div style="display: flex; justify-content: space-between; align-items: baseline">
+          <span class="shell-h2" style="font-size: 14px">journal</span>
+          <span class="shell-meta" style="text-transform: uppercase; letter-spacing: 0.14em">live</span>
+        </div>
+        <p class="shell-meta" style="margin-top: 4px; font-family: var(--font-sans); font-size: 11px; color: var(--muted)">
+          Text + voice entries.
+        </p>
+        <p class="shell-meta" style="margin-top: 7px">journal.jesselab.space</p>
+      </a>
+    </div>
+  </section>
+
+  <!-- Pulse bars (journal recording) -->
+  <section class="sg-section">
+    <p class="shell-eyebrow sg-label">Pulse bars · recording state</p>
+    <div class="shell-card" style="display: flex; align-items: center; justify-content: center; padding: 30px">
+      <div class="shell-pulse-bars">
+        <div class="shell-pulse-bars__bar" style="height: 14%; animation-delay: 0.0s"></div>
+        <div class="shell-pulse-bars__bar" style="height: 36%; animation-delay: 0.05s"></div>
+        <div class="shell-pulse-bars__bar" style="height: 62%; animation-delay: 0.10s"></div>
+        <div class="shell-pulse-bars__bar" style="height: 88%; animation-delay: 0.15s"></div>
+        <div class="shell-pulse-bars__bar" style="height: 70%; animation-delay: 0.20s"></div>
+        <div class="shell-pulse-bars__bar" style="height: 48%; animation-delay: 0.25s"></div>
+        <div class="shell-pulse-bars__bar" style="height: 78%; animation-delay: 0.30s"></div>
+        <div class="shell-pulse-bars__bar" style="height: 92%; animation-delay: 0.35s"></div>
+        <div class="shell-pulse-bars__bar" style="height: 58%; animation-delay: 0.40s"></div>
+        <div class="shell-pulse-bars__bar" style="height: 32%; animation-delay: 0.45s"></div>
+        <div class="shell-pulse-bars__bar" style="height: 70%; animation-delay: 0.50s"></div>
+        <div class="shell-pulse-bars__bar" style="height: 44%; animation-delay: 0.55s"></div>
+        <div class="shell-pulse-bars__bar" style="height: 24%; animation-delay: 0.60s"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Feed item (inspiration) -->
+  <section class="sg-section">
+    <p class="shell-eyebrow sg-label">Feed item · hover state</p>
+    <div class="shell-feed-item is-hover">
+      <p class="shell-meta" style="margin-bottom: 6px">7 May · TELEGRAM</p>
+      <h3 class="shell-h2">MQTT-controllable solar bollards</h3>
+      <p style="margin-top: 6px; color: var(--muted); font-size: 12.5px; line-height: 1.55">
+        Two contenders surfaced. Both IP65-rated, both run on captured PV.
+      </p>
+    </div>
+    <div class="shell-feed-item">
+      <p class="shell-meta" style="margin-bottom: 6px">5 May · READING</p>
+      <h3 class="shell-h2">Why path lights at knee height</h3>
+      <p style="margin-top: 6px; color: var(--muted); font-size: 12.5px; line-height: 1.55">
+        Light at ankle blinds you from above; light at eye level kills the night.
+      </p>
+    </div>
+  </section>
+
+  <!-- JS smoke test output -->
+  <section class="sg-section">
+    <p class="shell-eyebrow sg-label">Shell.heatColor · JS smoke</p>
+    <pre id="sg-smoke" class="shell-meta" style="white-space: pre-wrap; padding: 12px; background: var(--surface); border: 1px solid var(--line); border-radius: 8px"></pre>
+  </section>
+
+</main>
+
+<script type="module">
+  import { Shell, HEAT, heatColor } from "./shell.js";
+
+  // Mount the shared topbar (subapp mode for the test page).
+  Shell.mount({
+    mode: "subapp",
+    apiBase: "https://api.jesselab.space",
+  });
+
+  // Make the TAP button heat-track. Each tap lights one more cell and
+  // updates the button color to the next cell.
+  const bar = document.getElementById("sg-bar");
+  const tap = document.getElementById("sg-tap");
+  const cells = bar.querySelectorAll(".shell-bar-seg__cell");
+  let done = 8;
+  const total = 12;
+  const repaint = () => {
+    cells.forEach((c, i) => c.classList.toggle("is-on", i < done));
+    const c = heatColor(done, total);
+    tap.style.setProperty("--btn-color", c);
+    tap.style.setProperty("--btn-glow", c + "73"); // ~45% alpha hex suffix
+  };
+  tap.onclick = () => { if (done < total) done += 1; repaint(); };
+  repaint();
+
+  // Smoke test: print a few heatColor outputs so a human can eyeball them.
+  const lines = [
+    "HEAT.length = " + HEAT.length,
+    "heatColor(0, 12)  = " + heatColor(0, 12),
+    "heatColor(8, 12)  = " + heatColor(8, 12),
+    "heatColor(11, 12) = " + heatColor(11, 12),
+    "heatColor(0, 8)   = " + heatColor(0, 8),
+    "heatColor(7, 8)   = " + heatColor(7, 8),
+  ];
+  document.getElementById("sg-smoke").textContent = lines.join("\n");
+</script>
+</body>
+</html>

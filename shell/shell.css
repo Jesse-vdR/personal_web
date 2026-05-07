@@ -1,0 +1,396 @@
+/* shell.css — personal-hub shell · v1 (2026-05-07)
+ * Source of truth: Jesse-vdR/Jesse:docs/design-system.md
+ *
+ * Three layers: 1) tokens + fonts, 2) components, 3) chrome.
+ */
+
+/* ============================================================
+ * 1. TOKENS + FONTS
+ * ============================================================ */
+
+@font-face {
+  font-family: "Geist";
+  src: url("/shell/fonts/Geist-Variable.woff2") format("woff2-variations");
+  font-weight: 100 900;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Geist Mono";
+  src: url("/shell/fonts/GeistMono-Variable.woff2") format("woff2-variations");
+  font-weight: 100 900;
+  font-display: swap;
+}
+
+:root {
+  color-scheme: dark;
+
+  /* Backgrounds — warm-neutral darks */
+  --bg:           #110d0a;
+  --surface:      #1a1411;
+  --surface-2:    #221a14;
+  --line:         #2a201a;
+  --line-strong:  #3a2d24;
+
+  /* Text */
+  --fg:           #f5f0eb;
+  --muted:        #b8a89c;
+  --dim:          #8a7a6a;
+
+  /* Semantic + interactive */
+  --accent-cool:  #60a5fa;
+  --danger:       #ef4444;
+  --warm-foot:    #15100c;
+
+  /* HEAT gradient — 12 stops, ice → fire */
+  --heat-1:  #60a5fa;
+  --heat-2:  #729bef;
+  --heat-3:  #8590e3;
+  --heat-4:  #9985d6;
+  --heat-5:  #ad7ac8;
+  --heat-6:  #c170b8;
+  --heat-7:  #d266a8;
+  --heat-8:  #df5e92;
+  --heat-9:  #e8567c;
+  --heat-10: #e54a64;
+  --heat-11: #df3a4d;
+  --heat-12: #dc2626;
+
+  /* Page background */
+  --page-bg: radial-gradient(ellipse at top, #1d1410 0%, #110d0a 60%);
+
+  /* Typography */
+  --font-sans: "Geist", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: "Geist Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  /* Type scale (px) — sizes only; components compose weight/family. */
+  --t-eyebrow: 9.5px;
+  --t-meta:    10.5px;
+  --t-body-sm: 11.5px;
+  --t-body:    13px;
+  --t-body-lg: 14px;
+  --t-h2:      17px;
+  --t-h1:      22px;
+  --t-display: 32px;
+  --t-hero:    40px;
+  --t-mega:    56px;
+
+  /* Spacing (4px base) */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 22px;
+  --space-6: 32px;
+  --space-7: 48px;
+
+  /* Radii */
+  --r-sm: 3px;
+  --r-md: 8px;
+  --r-lg: 12px;
+  --r-xl: 14px;
+  --r-2xl: 18px;
+  --r-pill: 999px;
+
+  /* Motion */
+  --m-fast: 150ms;
+  --m-base: 200ms;
+  --m-slow: 280ms;
+}
+
+/* Reset + base */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body {
+  background: var(--page-bg);
+  background-attachment: fixed;
+  color: var(--fg);
+  font-family: var(--font-sans);
+  min-height: 100vh;
+  font-size: 16px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -webkit-tap-highlight-color: transparent;
+}
+
+a { color: var(--accent-cool); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+/* ============================================================
+ * 2. COMPONENTS
+ * ============================================================ */
+
+/* Eyebrow — Geist Mono caps with letter-spacing */
+.shell-eyebrow {
+  font: 500 9.5px/1 var(--font-mono);
+  color: var(--muted);
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+}
+
+/* Headings */
+.shell-h1 {
+  font: 500 22px/1.1 var(--font-sans);
+  color: var(--fg);
+  letter-spacing: -0.02em;
+}
+.shell-h2 {
+  font: 500 17px/1.15 var(--font-sans);
+  color: var(--fg);
+  letter-spacing: -0.02em;
+}
+
+/* Display number — light weight, monospaced numerals */
+.shell-display-num {
+  font: 200 32px/1 var(--font-sans);
+  color: var(--fg);
+  letter-spacing: -0.04em;
+  font-feature-settings: "tnum";
+}
+
+/* Meta text — small mono labels */
+.shell-meta {
+  font: 400 10.5px/1 var(--font-mono);
+  color: var(--dim);
+  letter-spacing: 0.04em;
+}
+
+/* Card — default surface */
+.shell-card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--r-xl);
+  padding: var(--space-4) var(--space-4) var(--space-5);
+}
+
+/* Tile — apex/portal card with hover-lift + sky border */
+.shell-tile {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--r-xl);
+  padding: var(--space-3) var(--space-4);
+  cursor: pointer;
+  transition: transform var(--m-fast),
+              border-color var(--m-base),
+              box-shadow var(--m-base);
+}
+.shell-tile:hover,
+.shell-tile.is-hover {
+  transform: translateY(-2px);
+  border-color: rgba(96, 165, 250, 0.55);
+  box-shadow: 0 0 0 1px rgba(96, 165, 250, 0.25),
+              0 8px 24px rgba(0, 0, 0, 0.35);
+}
+.shell-tile:active { transform: translateY(-1px) scale(0.995); }
+
+/* Buttons */
+.shell-btn-primary {
+  display: inline-flex; align-items: center; justify-content: center;
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--r-md);
+  border: 0;
+  font: 600 12px/1 var(--font-mono);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--warm-foot);
+  background: var(--btn-color, var(--accent-cool));
+  box-shadow: 0 0 12px var(--btn-glow, rgba(96, 165, 250, 0.4));
+  cursor: pointer;
+  transition: background var(--m-slow), box-shadow var(--m-slow), transform var(--m-fast);
+}
+.shell-btn-primary:active { transform: scale(0.97); }
+.shell-btn-primary:disabled { opacity: 0.5; cursor: not-allowed; }
+
+.shell-btn-secondary {
+  display: inline-flex; align-items: center; justify-content: center;
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--r-md);
+  border: 1px solid var(--line);
+  background: transparent;
+  font: 500 11px/1 var(--font-mono);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+  cursor: pointer;
+  transition: border-color var(--m-base), color var(--m-base);
+}
+.shell-btn-secondary:hover { border-color: rgba(96, 165, 250, 0.55); color: var(--fg); }
+
+.shell-btn-link {
+  background: none;
+  border: 0;
+  padding: 0;
+  color: var(--muted);
+  font: 500 10px/1 var(--font-mono);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  cursor: pointer;
+  text-decoration: none;
+}
+.shell-btn-link:hover { color: var(--fg); text-decoration: underline; }
+
+/* Segmented gradient bar (training) */
+.shell-bar-seg {
+  display: flex;
+  gap: 3px;
+}
+.shell-bar-seg__cell {
+  flex: 1;
+  height: 11px;
+  border-radius: var(--r-sm);
+  background: rgba(255, 255, 255, 0.04);
+  transition: background var(--m-slow), box-shadow var(--m-slow);
+}
+.shell-bar-seg__cell.is-on {
+  box-shadow: 0 0 5px rgba(232, 86, 124, 0.3);
+}
+.shell-bar-seg__cell:nth-child(1).is-on  { background: var(--heat-1);  }
+.shell-bar-seg__cell:nth-child(2).is-on  { background: var(--heat-2);  }
+.shell-bar-seg__cell:nth-child(3).is-on  { background: var(--heat-3);  }
+.shell-bar-seg__cell:nth-child(4).is-on  { background: var(--heat-4);  }
+.shell-bar-seg__cell:nth-child(5).is-on  { background: var(--heat-5);  }
+.shell-bar-seg__cell:nth-child(6).is-on  { background: var(--heat-6);  }
+.shell-bar-seg__cell:nth-child(7).is-on  { background: var(--heat-7);  }
+.shell-bar-seg__cell:nth-child(8).is-on  { background: var(--heat-8);  }
+.shell-bar-seg__cell:nth-child(9).is-on  { background: var(--heat-9);  }
+.shell-bar-seg__cell:nth-child(10).is-on { background: var(--heat-10); }
+.shell-bar-seg__cell:nth-child(11).is-on { background: var(--heat-11); }
+.shell-bar-seg__cell:nth-child(12).is-on { background: var(--heat-12); }
+
+/* Pulse bars (journal recording) — vertical, animated */
+.shell-pulse-bars {
+  --pulse-duration: 0.8s;
+  display: flex; align-items: center; gap: 5px;
+  height: 80px;
+}
+.shell-pulse-bars__bar {
+  width: 5px;
+  border-radius: var(--r-sm);
+  background: linear-gradient(to top, var(--heat-1), var(--heat-3));
+  box-shadow: 0 0 8px rgba(96, 165, 250, 0.5);
+  animation: shell-pulse var(--pulse-duration) ease-in-out infinite;
+}
+@keyframes shell-pulse {
+  0%, 100% { transform: scaleY(0.6); opacity: 0.7; }
+  50%      { transform: scaleY(1);   opacity: 1; }
+}
+
+/* Feed item (inspiration) — entry with left rule, not a card */
+.shell-feed-item {
+  padding: var(--space-3) var(--space-4) var(--space-3) var(--space-5);
+  border-left: 2px solid var(--line);
+  transition: border-color var(--m-base);
+  cursor: pointer;
+}
+.shell-feed-item:hover,
+.shell-feed-item.is-hover {
+  border-left-color: var(--accent-cool);
+}
+
+/* ============================================================
+ * 3. CHROME — page + topbar + width tiers
+ * ============================================================ */
+
+/* Page wrapper. Apply to <body> or a top-level <div>. */
+.shell-page {
+  /* Width tier set via .shell-page--narrow|medium|wide */
+  --shell-content-width: 760px; /* default = medium */
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+.shell-page--narrow { --shell-content-width: 560px; }
+.shell-page--medium { --shell-content-width: 760px; }
+.shell-page--wide   { --shell-content-width: 1100px; }
+
+/* Page header — eyebrow + title block below the topbar */
+.shell-page-header {
+  width: 100%;
+  max-width: var(--shell-content-width, 760px);
+  margin: 0 auto;
+  padding: var(--space-5) var(--space-4) var(--space-1);
+}
+.shell-page-header__eyebrow {
+  font: 500 var(--t-eyebrow)/1 var(--font-mono);
+  color: var(--muted);
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+}
+.shell-page-header__title {
+  font: 500 22px/1.1 var(--font-sans);
+  color: var(--fg);
+  margin-top: var(--space-2);
+  letter-spacing: -0.02em;
+}
+
+/* Page content — width-tier-bound */
+.shell-page-content {
+  width: 100%;
+  max-width: var(--shell-content-width, 760px);
+  margin: 0 auto;
+  padding: var(--space-4) var(--space-4) var(--space-7);
+  flex: 1;
+}
+
+/* Topbar — full-bleed sticky, inner row aligned to the page width.
+ * This is the structural fix for journal-app's full-bleed bug:
+ * the bar's BACKGROUND goes edge-to-edge, but the inner row
+ * inherits --shell-content-width via the parent .shell-page. */
+.shell-topbar {
+  position: sticky; top: 0; z-index: 5;
+  width: 100%;
+  background: rgba(17, 13, 10, 0.7);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--line);
+}
+.shell-topbar__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  max-width: var(--shell-content-width, 760px);
+  margin: 0 auto;
+  padding: var(--space-3) var(--space-4);
+}
+.shell-topbar__brand {
+  display: inline-flex; align-items: center; gap: var(--space-1);
+  text-decoration: none;
+  -webkit-tap-highlight-color: transparent;
+}
+.shell-topbar__brand:hover { text-decoration: none; }
+.shell-topbar__arrow {
+  color: var(--dim);
+  font-size: 13px;
+  line-height: 1;
+  transition: color var(--m-fast), transform var(--m-fast);
+}
+.shell-topbar__brand:hover .shell-topbar__arrow {
+  color: var(--accent-cool);
+  transform: translateX(-2px);
+}
+.shell-topbar__brand-text {
+  font: 500 12px/1 var(--font-mono);
+  color: var(--fg);
+  letter-spacing: 0.04em;
+}
+.shell-topbar--apex .shell-topbar__brand-text {
+  font-size: 13px;
+  font-weight: 600;
+}
+.shell-topbar__user {
+  display: flex; align-items: center; gap: var(--space-2);
+}
+.shell-topbar__user-name {
+  font: 500 10px/1 var(--font-mono);
+  color: var(--muted);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+.shell-topbar__avatar {
+  width: 22px; height: 22px;
+  border-radius: 50%;
+  display: block;
+}
+.shell-topbar__avatar--gradient {
+  background: linear-gradient(135deg, var(--heat-3), var(--heat-9));
+}
