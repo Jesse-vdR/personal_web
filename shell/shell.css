@@ -1,0 +1,114 @@
+/* shell.css — personal-hub shell · v1 (2026-05-07)
+ * Source of truth: Jesse-vdR/Jesse:docs/design-system.md
+ *
+ * Three layers: 1) tokens + fonts, 2) components, 3) chrome.
+ */
+
+/* ============================================================
+ * 1. TOKENS + FONTS
+ * ============================================================ */
+
+@font-face {
+  font-family: "Geist";
+  src: url("/shell/fonts/Geist-Variable.woff2") format("woff2-variations");
+  font-weight: 100 900;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Geist Mono";
+  src: url("/shell/fonts/GeistMono-Variable.woff2") format("woff2-variations");
+  font-weight: 100 900;
+  font-display: swap;
+}
+
+:root {
+  color-scheme: dark;
+
+  /* Backgrounds — warm-neutral darks */
+  --bg:           #110d0a;
+  --surface:      #1a1411;
+  --surface-2:    #221a14;
+  --line:         #2a201a;
+  --line-strong:  #3a2d24;
+
+  /* Text */
+  --fg:           #f5f0eb;
+  --muted:        #b8a89c;
+  --dim:          #8a7a6a;
+
+  /* Semantic + interactive */
+  --accent-cool:  #60a5fa;
+  --danger:       #ef4444;
+  --warm-foot:    #15100c;
+
+  /* HEAT gradient — 12 stops, ice → fire */
+  --heat-1:  #60a5fa; --heat-2:  #729bef; --heat-3:  #8590e3;
+  --heat-4:  #9985d6; --heat-5:  #ad7ac8; --heat-6:  #c170b8;
+  --heat-7:  #d266a8; --heat-8:  #df5e92; --heat-9:  #e8567c;
+  --heat-10: #e54a64; --heat-11: #df3a4d; --heat-12: #dc2626;
+
+  /* Page background */
+  --page-bg: radial-gradient(ellipse at top, #1d1410 0%, #110d0a 60%);
+
+  /* Typography */
+  --font-sans: "Geist", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: "Geist Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  /* Type scale (px). Components compose font-weight/family/line-height
+   * with these sizes, so tokens stay size-only. */
+  --t-eyebrow: 9.5px;
+  --t-meta:    10.5px;
+  --t-body-sm: 11.5px;
+  --t-body:    13px;
+  --t-body-lg: 14px;
+  --t-card-h:  17px;
+  --t-h2:      20px;
+  --t-h1:      22px;
+  --t-display: 32px;
+  --t-hero:    40px;
+  --t-mega:    56px;
+
+  /* Spacing (4px base) */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 22px;
+  --space-6: 32px;
+  --space-7: 48px;
+
+  /* Radii */
+  --r-sm: 3px;
+  --r-md: 8px;
+  --r-lg: 12px;
+  --r-xl: 14px;
+  --r-2xl: 18px;
+  --r-pill: 999px;
+
+  /* Motion */
+  --m-fast: 150ms;
+  --m-base: 200ms;
+  --m-slow: 280ms;
+}
+
+/* Reset + base */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body {
+  background: var(--page-bg);
+  background-attachment: fixed;
+  color: var(--fg);
+  font-family: var(--font-sans);
+  min-height: 100vh;
+  font-size: 16px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -webkit-tap-highlight-color: transparent;
+}
+
+a { color: var(--accent-cool); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+/* ============================================================
+ * Continued in Task 3 (components) and Task 4 (chrome).
+ * ============================================================ */
