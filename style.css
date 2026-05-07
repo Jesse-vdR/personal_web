@@ -1,274 +1,211 @@
-:root {
-  --bg: #0a0b10;
-  --bg-2: #12131b;
-  --bg-3: #0f1119;
-  --fg: #f1f5f9;
-  --muted: #94a3b8;
-  --dim: #64748b;
-  --line: #1e2130;
-  --accent: #7c3aed;
-  --accent-2: #06b6d4;
-  --warn: #f59e0b;
-  --ok: #22c55e;
-}
+/* style.css — apex-only overrides on top of /shell/shell.css.
+ * Tokens, reset, base typography, topbar, page wrapper come from the shell.
+ * Everything in this file is unique to the apex landing page + profile.
+ */
 
-* { box-sizing: border-box; margin: 0; padding: 0; }
+/* ============================================================
+ * Hero (apex landing page)
+ * ============================================================ */
 
-html, body {
-  background: radial-gradient(ellipse at top, #151724 0%, var(--bg) 60%);
-  background-attachment: fixed;
-  color: var(--fg);
-  font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  min-height: 100vh;
-  -webkit-font-smoothing: antialiased;
-}
-
-body {
-  padding: 1.5rem 1rem 3rem;
-  max-width: 560px;
-  margin: 0 auto;
-  font-size: 16px;
-  line-height: 1.5;
-}
-
-a { color: var(--accent-2); text-decoration: none; }
-a:hover { text-decoration: underline; }
-
-code {
-  background: var(--bg-3);
-  border: 1px solid var(--line);
-  padding: 0.05em 0.4em;
-  border-radius: 4px;
-  font-size: 0.85em;
-  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
-}
-
-/* ===== HEADER ===== */
-header {
-  padding: 2rem 0 2.5rem;
+.apex-hero {
+  padding: var(--space-6) 0 var(--space-7);
   text-align: center;
 }
 
-.eyebrow {
-  font-size: 11px;
-  letter-spacing: 0.22em;
+.apex-hero__eyebrow {
+  font: 500 11px/1 var(--font-mono);
+  letter-spacing: 0.3em;
   text-transform: uppercase;
   color: var(--muted);
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 0.55rem;
-  margin-bottom: 1rem;
-}
-.eyebrow .dot {
-  width: 7px; height: 7px;
-  border-radius: 999px;
-  background: linear-gradient(135deg, var(--accent), var(--warn));
-  box-shadow: 0 0 10px rgba(124, 58, 237, 0.55);
+  margin-bottom: var(--space-4);
 }
 
-header h1 {
-  font-size: clamp(1.6rem, 5.5vw, 2rem);
-  font-weight: 700;
-  letter-spacing: -0.02em;
-  background: linear-gradient(135deg, #f1f5f9 0%, #c4b5fd 55%, #fbbf24 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-}
-
-/* ===== AUTH ===== */
-.auth {
-  margin-top: 1.1rem;
-  font-size: 0.85rem;
-  color: var(--muted);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.55rem;
-  min-height: 1.5rem;
-}
-.auth img {
-  width: 22px;
-  height: 22px;
+.apex-hero__dot {
+  width: 7px;
+  height: 7px;
   border-radius: 50%;
+  background: linear-gradient(135deg, var(--heat-3), var(--heat-9));
+  box-shadow: 0 0 8px rgba(232, 86, 124, 0.5);
 }
-.auth a, .auth button {
-  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
-  font-size: 0.7rem;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--accent-2);
-  background: none;
-  border: 0;
-  padding: 0;
-  cursor: pointer;
-  text-decoration: none;
-}
-.auth a:hover, .auth button:hover { color: var(--fg); text-decoration: underline; }
 
-/* ===== SECTIONS ===== */
-.section-h {
-  font-size: 0.7rem;
+.apex-hero__title {
+  font: 200 36px/1 var(--font-sans);
+  letter-spacing: -0.04em;
+  color: var(--fg);
+  margin-bottom: var(--space-2);
+}
+
+.apex-hero__sub {
+  font: 400 13px/1.5 var(--font-sans);
+  color: var(--muted);
+  max-width: 32ch;
+  margin: 0 auto;
+}
+
+/* ============================================================
+ * Section heading (apex pages, not in shell)
+ * ============================================================ */
+
+.apex-section-h {
+  font: 500 var(--t-eyebrow)/1 var(--font-mono);
   letter-spacing: 0.22em;
   text-transform: uppercase;
   color: var(--dim);
-  margin: 0 0 0.7rem;
-  font-weight: 600;
+  margin-bottom: var(--space-3);
 }
 
-main section + section { margin-top: 2.25rem; }
-
-/* ===== CARDS ===== */
-.card {
-  display: block;
-  background: var(--bg-2);
-  border: 1px solid var(--line);
-  border-radius: 14px;
-  padding: 1rem 1.1rem;
-  margin-bottom: 0.65rem;
-  color: var(--fg);
-  text-decoration: none;
-  transition: border-color 0.2s, transform 0.15s;
-  -webkit-tap-highlight-color: transparent;
+main .apex-section-h:not(:first-child) {
+  margin-top: var(--space-6);
 }
-.card:hover {
-  border-color: rgba(124, 58, 237, 0.45);
-  text-decoration: none;
-}
-.card:active { transform: scale(0.99); }
 
-.card-row {
+/* ============================================================
+ * Apex tile inner content (outer is .shell-tile)
+ * ============================================================ */
+
+.apex-apps {
+  margin-top: var(--space-6);
+}
+
+.apex-apps .shell-tile + .shell-tile {
+  margin-top: var(--space-2);
+}
+
+.apex-tile-row {
   display: flex;
   align-items: baseline;
   justify-content: space-between;
-  gap: 0.5rem;
-  margin-bottom: 0.4rem;
+  gap: var(--space-2);
+  margin-bottom: var(--space-1);
 }
-.card-title {
-  font-size: 1.05rem;
-  font-weight: 600;
+
+.apex-tile-title {
+  font: 500 var(--t-h2)/1.15 var(--font-sans);
+  color: var(--fg);
+  letter-spacing: -0.01em;
 }
-.card-tag {
-  font-size: 0.65rem;
+
+.apex-tile-tag {
+  font: 500 9px/1 var(--font-mono);
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: var(--ok);
-  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  color: var(--ok, #22c55e);
 }
-.card-blurb {
+
+.apex-tile-blurb {
   color: var(--muted);
-  font-size: 0.92rem;
-  margin-bottom: 0.55rem;
+  font: 400 13px/1.5 var(--font-sans);
+  margin-bottom: var(--space-2);
 }
-.card-host {
-  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
-  font-size: 0.72rem;
+
+.apex-tile-host {
+  font: 400 var(--t-meta)/1 var(--font-mono);
   color: var(--dim);
   letter-spacing: 0.04em;
 }
 
-/* ===== ABOUT ===== */
-.about p {
-  color: var(--muted);
-  font-size: 0.92rem;
-  margin-bottom: 0.65rem;
-}
-.about p:last-child { margin-bottom: 0; }
+/* ============================================================
+ * About section (apex landing page)
+ * ============================================================ */
 
-/* ===== PROFILE ===== */
-.field {
-  margin-bottom: 1rem;
+.apex-about {
+  margin-top: var(--space-6);
 }
-.field label {
+
+.apex-about p {
+  color: var(--muted);
+  font: 400 13px/1.5 var(--font-sans);
+  margin-bottom: var(--space-2);
+}
+
+.apex-about p:last-child {
+  margin-bottom: 0;
+}
+
+code {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  padding: 0.1em 0.45em;
+  border-radius: var(--r-sm);
+  font: 400 0.85em var(--font-mono);
+}
+
+/* ============================================================
+ * Profile page
+ * ============================================================ */
+
+.apex-profile,
+.apex-byok,
+.apex-actions {
+  margin-top: var(--space-5);
+}
+
+.apex-field {
+  margin-bottom: var(--space-4);
+}
+
+.apex-field label {
   display: block;
-  font-size: 0.7rem;
+  font: 500 var(--t-eyebrow)/1 var(--font-mono);
   letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--dim);
-  margin-bottom: 0.35rem;
+  margin-bottom: var(--space-1);
 }
-.field-value {
-  background: var(--bg-2);
+
+.apex-field-value {
+  background: var(--surface);
   border: 1px solid var(--line);
-  border-radius: 8px;
-  padding: 0.6rem 0.8rem;
-  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
-  font-size: 0.92rem;
-}
-.field input {
-  width: 100%;
-  background: var(--bg-2);
-  border: 1px solid var(--line);
-  border-radius: 8px;
-  padding: 0.6rem 0.8rem;
+  border-radius: var(--r-md);
+  padding: var(--space-2) var(--space-3);
+  font: 400 var(--t-body-lg)/1.4 var(--font-mono);
   color: var(--fg);
-  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
-  font-size: 0.92rem;
 }
-.field input:disabled {
+
+.apex-field input {
+  width: 100%;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--r-md);
+  padding: var(--space-2) var(--space-3);
+  color: var(--fg);
+  font: 400 var(--t-body-lg)/1.4 var(--font-mono);
+}
+
+.apex-field input:disabled {
   opacity: 0.45;
   cursor: not-allowed;
 }
-.byok-help {
+
+.apex-byok-help {
   color: var(--muted);
-  font-size: 0.85rem;
-  margin-bottom: 1rem;
-}
-.actions {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  margin-top: 1rem;
-}
-.signout {
-  background: var(--bg-2);
-  border: 1px solid var(--line);
-  border-radius: 8px;
-  padding: 0.55rem 1rem;
-  color: var(--fg);
-  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
-  font-size: 0.78rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  cursor: pointer;
-}
-.signout:hover { border-color: rgba(239, 68, 68, 0.6); color: #fca5a5; }
-.back-link {
-  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
-  font-size: 0.78rem;
-  color: var(--muted);
+  font: 400 var(--t-body)/1.5 var(--font-sans);
+  margin-bottom: var(--space-4);
 }
 
-/* ===== FOOTER ===== */
-footer {
-  margin-top: 3rem;
-  padding-top: 1.5rem;
+.apex-back-link {
+  font: 400 var(--t-meta)/1 var(--font-mono);
+  color: var(--muted);
+  letter-spacing: 0.04em;
+}
+
+/* ============================================================
+ * Footer
+ * ============================================================ */
+
+.apex-footer {
+  margin-top: var(--space-7);
+  padding: var(--space-5) var(--space-4) var(--space-4);
   border-top: 1px solid var(--line);
   text-align: center;
-  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
-  font-size: 0.72rem;
+  font: 400 var(--t-meta)/1 var(--font-mono);
   color: var(--dim);
   letter-spacing: 0.05em;
 }
-footer a { color: var(--muted); }
 
-/* ===== DESKTOP (>=900px) ===== */
-@media (min-width: 900px) {
-  body { max-width: 880px; }
-
-  /* Apps section becomes a 2-column card grid; the section heading
-     spans both columns so it still reads as the section label. */
-  .apps {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 0.65rem;
-    align-items: stretch;
-  }
-  .apps .section-h { grid-column: 1 / -1; }
-  .apps .card { margin-bottom: 0; }
-
-  /* Bigger header so it doesn't look pinched in a wider column */
-  header { padding: 2.5rem 0 3rem; }
-  header h1 { font-size: clamp(2rem, 4.2vw, 2.6rem); }
+.apex-footer a {
+  color: var(--muted);
 }
