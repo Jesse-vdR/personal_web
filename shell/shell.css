@@ -42,10 +42,18 @@
   --warm-foot:    #15100c;
 
   /* HEAT gradient — 12 stops, ice → fire */
-  --heat-1:  #60a5fa; --heat-2:  #729bef; --heat-3:  #8590e3;
-  --heat-4:  #9985d6; --heat-5:  #ad7ac8; --heat-6:  #c170b8;
-  --heat-7:  #d266a8; --heat-8:  #df5e92; --heat-9:  #e8567c;
-  --heat-10: #e54a64; --heat-11: #df3a4d; --heat-12: #dc2626;
+  --heat-1:  #60a5fa;
+  --heat-2:  #729bef;
+  --heat-3:  #8590e3;
+  --heat-4:  #9985d6;
+  --heat-5:  #ad7ac8;
+  --heat-6:  #c170b8;
+  --heat-7:  #d266a8;
+  --heat-8:  #df5e92;
+  --heat-9:  #e8567c;
+  --heat-10: #e54a64;
+  --heat-11: #df3a4d;
+  --heat-12: #dc2626;
 
   /* Page background */
   --page-bg: radial-gradient(ellipse at top, #1d1410 0%, #110d0a 60%);
@@ -54,15 +62,13 @@
   --font-sans: "Geist", system-ui, -apple-system, "Segoe UI", sans-serif;
   --font-mono: "Geist Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
 
-  /* Type scale (px). Components compose font-weight/family/line-height
-   * with these sizes, so tokens stay size-only. */
+  /* Type scale (px) — sizes only; components compose weight/family. */
   --t-eyebrow: 9.5px;
   --t-meta:    10.5px;
   --t-body-sm: 11.5px;
   --t-body:    13px;
   --t-body-lg: 14px;
-  --t-card-h:  17px;
-  --t-h2:      20px;
+  --t-h2:      17px;
   --t-h1:      22px;
   --t-display: 32px;
   --t-hero:    40px;
